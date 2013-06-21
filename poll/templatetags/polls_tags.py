@@ -26,7 +26,9 @@ def poll(context, poll):
 @register.inclusion_tag('polls.html', takes_context=True)
 def poll_queue(context, queue=None):
     try:
-        if isinstance(queue, SafeUnicode):
+        if not queue:
+            tmp_polls = Poll.objects.filter(startdate__lte=datetime.now().date)
+        elif isinstance(queue, SafeUnicode):
             tmp_queue = Queue.objects.get(title=queue)
         else:
             tmp_queue = Queue.objects.get(queue)
@@ -34,15 +36,15 @@ def poll_queue(context, queue=None):
     except:
         raise Exception('Queue not found')
 
-    tmp_polls = Poll.publish_manager.filter(queue=tmp_queue,
+    if queue:
+        tmp_polls = Poll.publish_manager.filter(queue=tmp_queue,
                                             startdate__lte=datetime.now())
-
     if len(tmp_polls) > 0:
         cur_poll = tmp_polls[0]
+        return poll(context, cur_poll)
     else:
         cur_poll = None
 
-    return poll(context, cur_poll)
 
 
 class RenderItemsClass(template.Node):

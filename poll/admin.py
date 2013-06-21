@@ -12,7 +12,7 @@ class PollItemInline(admin.TabularInline):
 
 
 class PollAdmin(admin.ModelAdmin):
-    list_display = ('title', 'queue', 'startdate', 'polltype', 'vote_count',
+    list_display = ('title', 'startdate', 'polltype', 'vote_count',
                     'publish')
     inlines = [
         PollItemInline,
@@ -20,7 +20,7 @@ class PollAdmin(admin.ModelAdmin):
 
     fieldsets = (
                  (None, {'fields': ('title',)}),
-                 (_('Options'), {'fields': ('publish', 'polltype', 'queue',
+                 (_('Options'), {'fields': ('publish', 'polltype',
                                             'startdate',)}),
                  )
 
@@ -40,5 +40,5 @@ class VoteAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Poll, PollAdmin)
-admin.site.register(Queue, admin.ModelAdmin)
+#admin.site.register(Queue, admin.ModelAdmin)
 admin.site.register(Vote, VoteAdmin)

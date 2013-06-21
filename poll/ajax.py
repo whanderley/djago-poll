@@ -6,11 +6,11 @@ from utils import set_cookie
 
 
 def authpass(user, queue):
-    if queue != None:
-        if queue.auth:
-            if not user.is_authenticated():
-                return False
-    return True
+    # if queue != None:
+    #     if queue.auth:
+    #         if not user.is_authenticated():
+    #             return False
+    return not(queue and queue.auth and not user.is_authenticated())
 
 
 #TODO: Need to optimize

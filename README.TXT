@@ -1,4 +1,6 @@
-Django-poll-system (example: http://polltest.pythonism.ru)
+Based on https://bitbucket.org/RafRaf/django-poll-system
+
+Django-poll-system
 
 
 Requirements
