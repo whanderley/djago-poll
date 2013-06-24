@@ -5,7 +5,7 @@
 	{% include "_polls_style.css" %}
 </style>
 <script type="text/javascript">
-	trans_total_voters = '{% trans "Total Voters" %}';
+	trans_total_voters = '{% trans "Total de votos" %}';
 	trans_choose_anything_to_vote = '{% trans "Please, choose anything to vote" %}';
 	trans_only_authenticated_users_can_vote = '{% trans "Only authenticated users can vote" %}';
 	{% include "_polls_script.js" %}
@@ -22,13 +22,13 @@
 		<h1 class="dps_poll_content_header"><span class="dps_poll_title">{% trans "Poll" %}:</span> {{ poll.title }}</h1>
 		{% if user.is_authenticated %}
 		<div class="dps_poll_userspace">
-			{% trans "User" %}: {{ user }}
+			{% trans "Usuário" %}: {{ user }}
 		</div>
 		{% endif %} 
 		<div class="dps_poll_body">
 			{% if poll.get_cookie_name in request.COOKIES %}
-				<p>{% trans "You already voted" %}.</p>
-				<p><a class="dps_showresults_{{ poll.pk }}" href="javascript:void(0);">{% trans "Show results" %}</a></p>
+				<p>{% trans "Você já votou" %}.</p>
+				<p><a class="dps_showresults_{{ poll.pk }}" href="javascript:void(0);">{% trans "Mostrar resultados" %}</a></p>
 			{% else %}
 				{% render_items poll items %}
 				<p><input class="dps_sendvote_{{ poll.pk }}" type="button" value="{% trans "Vote" %}" /></p>
